@@ -1,0 +1,18 @@
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  build:
+    cmds:
+      - go build -o review-app.exe ./cmd/main.go
+
+  run:
+    cmds:
+      - ./review-app.exe
