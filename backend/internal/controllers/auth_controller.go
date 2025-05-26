@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/christmas-fire/review-app/internal/models"
-	"github.com/christmas-fire/review-app/internal/services"
+	"github.com/christmas-fire/review-app/backend/internal/models"
+	"github.com/christmas-fire/review-app/backend/internal/services"
 	"github.com/gin-gonic/gin"
 )
 

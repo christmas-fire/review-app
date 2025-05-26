@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/christmas-fire/review-app/internal/models"
+	"github.com/christmas-fire/review-app/backend/internal/models"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -15,20 +15,9 @@ func NewAuthPostgres(db *sqlx.DB) *AuthPostgres {
 
 func (r *AuthPostgres) Register(user models.User) (int, error) {
 	var id int
-	var count int
-
-	err := r.db.QueryRow("SELECT COUNT(*) FROM users").Scan(&count)
-	if err != nil {
-		return 0, err
-	}
-
-	role := user.Role
-	if count == 0 {
-		role = "admin"
-	}
 
 	query := "INSERT INTO users (username, email, password, role) VALUES ($1, $2, $3, $4) RETURNING id"
-	row := r.db.QueryRow(query, user.Username, user.Email, user.Password, role)
+	row := r.db.QueryRow(query, user.Username, user.Email, user.Password, user.Role)
 	if err := row.Scan(&id); err != nil {
 		return 0, err
 	}

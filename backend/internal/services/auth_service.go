@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/christmas-fire/review-app/internal/models"
-	"github.com/christmas-fire/review-app/internal/repositories"
+	"github.com/christmas-fire/review-app/backend/internal/models"
+	"github.com/christmas-fire/review-app/backend/internal/repositories"
 	"github.com/golang-jwt/jwt/v5"
 	// bcrypt is used in service.go for ComparePasswordAndHash and generatePasswordHash
 )

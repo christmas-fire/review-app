@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/christmas-fire/review-app/internal/models"
-	"github.com/christmas-fire/review-app/internal/repositories"
+	"github.com/christmas-fire/review-app/backend/internal/models"
+	"github.com/christmas-fire/review-app/backend/internal/repositories"
 	"golang.org/x/crypto/bcrypt"
 )
 

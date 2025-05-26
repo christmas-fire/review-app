@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/christmas-fire/review-app/internal/config"
+	"github.com/christmas-fire/review-app/backend/internal/config"
 	"github.com/joho/godotenv"
 )
 
