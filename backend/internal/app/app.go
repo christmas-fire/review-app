@@ -22,7 +22,6 @@ func InitConfig() *config.Config {
 	}
 }
 
-// getEnv — безопасное получение переменной окружения с fallback
 func getEnv(key, fallback string) string {
 	if value, exists := os.LookupEnv(key); exists {
 		return value
