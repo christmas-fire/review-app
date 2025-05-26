@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/christmas-fire/review-app/internal/models"
+	"github.com/christmas-fire/review-app/backend/internal/models"
 	"github.com/jmoiron/sqlx"
 )
 

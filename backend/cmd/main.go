@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/christmas-fire/review-app/internal/app"
-	"github.com/christmas-fire/review-app/internal/controllers"
-	"github.com/christmas-fire/review-app/internal/repositories"
-	"github.com/christmas-fire/review-app/internal/routes"
-	"github.com/christmas-fire/review-app/internal/services"
+	"github.com/christmas-fire/review-app/backend/internal/app"
+	"github.com/christmas-fire/review-app/backend/internal/controllers"
+	"github.com/christmas-fire/review-app/backend/internal/repositories"
+	"github.com/christmas-fire/review-app/backend/internal/routes"
+	"github.com/christmas-fire/review-app/backend/internal/services"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
