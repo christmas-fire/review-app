@@ -115,6 +115,8 @@ function AuthScreen({ initialMode = 'login', onAuthSuccess }) {
 
             if (decodedPayload.role === 'admin') {
               navigate('/admin/dashboard');
+            } else if (decodedPayload.role === 'author') {
+              navigate('/author/dashboard');
             } else {
               // For non-admins, show success message (if login mode)
               // The onAuthSuccess call above already updated App state, App.js will handle user's welcome screen
