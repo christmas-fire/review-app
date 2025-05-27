@@ -40,4 +40,4 @@ tasks:
 
   clean:
     cmds:
-      - rm -f {{.BACKEND_EXE}}
+      - del {{.BACKEND_EXE}}

@@ -14,13 +14,22 @@ type Auth interface {
 	Login(username, password string) (string, error)
 }
 
+type Users interface {
+	CreateUser(user models.User) (int, error)
+	GetAllUsers() ([]models.User, error)
+	DeleteUser(id int) error
+	BlockUser(id int) error
+}
+
 type Service struct {
 	Auth
+	Users
 }
 
 func NewService(repo *repositories.Repository) *Service {
 	return &Service{
-		Auth: NewAuthService(repo.Auth),
+		Auth:  NewAuthService(repo.Auth),
+		Users: NewUsersService(repo.Users),
 	}
 }
 
@@ -54,6 +63,14 @@ func validateUser(u models.User) error {
 
 	if u.Role != "admin" && u.Role != "author" && u.Role != "reviewer" {
 		return fmt.Errorf("invalid role: expect 'admin', 'author', 'reviewer'")
+	}
+
+	return nil
+}
+
+func validateRole(role string) error {
+	if role != "author" && role != "reviewer" {
+		return fmt.Errorf("admin create only 'author' or 'reviewer'")
 	}
 
 	return nil

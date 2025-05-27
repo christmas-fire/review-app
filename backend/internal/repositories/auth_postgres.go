@@ -27,7 +27,7 @@ func (r *AuthPostgres) Register(user models.User) (int, error) {
 
 func (r *AuthPostgres) Login(username, password string) (models.User, error) {
 	var user models.User
-	query := "SELECT id, username, email, password, role FROM users WHERE username=$1"
+	query := "SELECT id, username, email, password, role, is_blocked FROM users WHERE username=$1"
 
 	err := r.db.Get(&user, query, username)
 	if err != nil {

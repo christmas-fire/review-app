@@ -30,12 +30,19 @@ func InitRouter(h *controllers.Controller) *gin.Engine {
 		users.Use(middleware.AuthMiddleware())
 		{
 			users.POST("/", middleware.RoleMiddleware("admin"), h.Users.CreateUser)
+			users.GET("/", middleware.RoleMiddleware("admin"), h.Users.GetAllUsers)
+			users.DELETE("/:id", middleware.RoleMiddleware("admin"), h.Users.DeleteUser)
+			users.PATCH("/:id/block", middleware.RoleMiddleware("admin"), h.Users.BlockUser)
 		}
 
-		// articles := apiV1.Group("/articles")
-		// {
+		articles := apiV1.Group("/articles")
+		articles.Use(middleware.AuthMiddleware())
+		{
+			articles.POST("/", middleware.RoleMiddleware("author"), h.Articles.CreateArticle)
+			articles.GET("/", middleware.RoleMiddleware("admin"), h.Articles.GetAllArticles)
+			articles.DELETE("/:id", middleware.RoleMiddleware("admin"), h.Articles.DeleteArticle)
 
-		// }
+		}
 
 		// reviews := apiV1.Group("/reviews")
 		// {

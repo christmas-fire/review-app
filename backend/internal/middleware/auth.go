@@ -76,25 +76,33 @@ func GetUserIDFromContext(c *gin.Context) (string, bool) {
 	return id, ok
 }
 
-func RoleMiddleware(requiredRole string) gin.HandlerFunc {
+func RoleMiddleware(requiredRoles ...string) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		_, userIDEexists := c.Get("userID")
-		userRole, roleExists := c.Get("userRole")
+		_, userIDExists := c.Get("userID")
+		userRoleValue, roleExists := c.Get("userRole")
 
-		if !userIDEexists || !roleExists {
-			logrus.Error("RequiredRoleMiddleware: userID or userRole not found in context. Ensure AuthMiddleware runs first and sets these values.")
+		if !userIDExists || !roleExists {
+			logrus.Error("RoleMiddleware: userID or userRole not found in context. Ensure AuthMiddleware runs first.")
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Server configuration error"})
 			return
 		}
 
-		role, ok := userRole.(string)
+		role, ok := userRoleValue.(string)
 		if !ok {
-			logrus.Errorf("RequiredRoleMiddleware: userRole in context is not a string: %T", userRole)
+			logrus.Errorf("RoleMiddleware: userRole is not a string: %T", userRoleValue)
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Server processing error"})
 			return
 		}
 
-		if role != requiredRole {
+		allowed := false
+		for _, allowedRole := range requiredRoles {
+			if role == allowedRole {
+				allowed = true
+				break
+			}
+		}
+
+		if !allowed {
 			c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": "Forbidden: You do not have the required role"})
 			return
 		}
