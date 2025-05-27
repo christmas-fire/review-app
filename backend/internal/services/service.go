@@ -19,12 +19,14 @@ type Users interface {
 	GetAllUsers() ([]models.User, error)
 	DeleteUser(id int) error
 	BlockUser(id int) error
+	MyProfile(id int) (models.User, error)
 }
 
 type Articles interface {
 	CreateArticle(article models.Article) (int, error)
 	GetAllArticles() ([]models.Article, error)
 	DeleteArticle(id int) error
+	MyArticles(id int) ([]models.Article, error)
 }
 
 type Service struct {

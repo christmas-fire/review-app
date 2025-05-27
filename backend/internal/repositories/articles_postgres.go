@@ -35,7 +35,6 @@ func (r *ArticlesPostgres) GetAllArticles() ([]models.Article, error) {
 	err := r.db.Select(&articles, query)
 
 	return articles, err
-
 }
 
 func (r *ArticlesPostgres) DeleteArticle(id int) error {
@@ -49,4 +48,12 @@ func (r *ArticlesPostgres) DeleteArticle(id int) error {
 	}
 
 	return nil
+}
+
+func (r *ArticlesPostgres) MyArticles(id int) ([]models.Article, error) {
+	var articles []models.Article
+	query := "SELECT id, author_id, review_id, title, category, content, is_reviewed, created_at FROM articles WHERE author_id=$1"
+	err := r.db.Select(&articles, query, id)
+
+	return articles, err
 }

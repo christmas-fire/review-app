@@ -15,12 +15,14 @@ type Users interface {
 	GetAllUsers(c *gin.Context)
 	DeleteUser(c *gin.Context)
 	BlockUser(c *gin.Context)
+	MyProfile(c *gin.Context)
 }
 
 type Articles interface {
 	CreateArticle(c *gin.Context)
 	GetAllArticles(c *gin.Context)
 	DeleteArticle(c *gin.Context)
+	MyArticles(c *gin.Context)
 }
 
 type Controller struct {
