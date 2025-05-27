@@ -54,7 +54,6 @@ func (h *UsersController) GetAllUsers(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"users": users})
-
 }
 
 func (h *UsersController) DeleteUser(c *gin.Context) {

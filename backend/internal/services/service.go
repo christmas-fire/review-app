@@ -21,15 +21,23 @@ type Users interface {
 	BlockUser(id int) error
 }
 
+type Articles interface {
+	CreateArticle(article models.Article) (int, error)
+	GetAllArticles() ([]models.Article, error)
+	DeleteArticle(id int) error
+}
+
 type Service struct {
 	Auth
 	Users
+	Articles
 }
 
 func NewService(repo *repositories.Repository) *Service {
 	return &Service{
-		Auth:  NewAuthService(repo.Auth),
-		Users: NewUsersService(repo.Users),
+		Auth:     NewAuthService(repo.Auth),
+		Users:    NewUsersService(repo.Users),
+		Articles: NewArticlesService(repo),
 	}
 }
 
