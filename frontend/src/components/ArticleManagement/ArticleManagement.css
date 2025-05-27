@@ -1,0 +1,133 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding: 30px;
+  background-color: #eef1f5; 
+  min-height: calc(100vh - 60px);
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page-header {
+  width: 100%;
+  max-width: 1100px; 
+  margin-bottom: 25px;
+  text-align: center; 
+}
+
+.page-title {
+  color: #2c3e50;
+  margin-top: 0; 
+  margin-bottom: 8px;
+  font-size: 2.6em;
+  font-weight: 600;
+}
+
+.breadcrumbs {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 20px; 
+}
+
+.breadcrumbs a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.actions-bar {
+  width: 100%;
+  max-width: 1100px;
+  background-color: #fff; 
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.actions-bar p {
+  margin: 0;
+  color: #555;
+  font-size: 1em;
+}
+
+.content-card {
+  width: 100%;
+  max-width: 1100px;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.loading-indicator, .error-display {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2em;
+}
+
+.error-display p {
+  color: #c0392b; 
+  background-color: #fdecea;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #f5c6cb;
+  display: inline-block;
+}
+
+
+.articles-table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0; 
+}
+
+.articles-table-card th,
+.articles-table-card td {
+  border: 1px solid #e0e0e0; 
+  padding: 12px 15px; 
+  text-align: left;
+  font-size: 0.95em;
+}
+
+.articles-table-card th {
+  background-color: #f7f9fa; 
+  font-weight: 600; 
+  color: #333;
+}
+
+.articles-table-card tr:nth-child(even) {
+  background-color: #fdfdfd; 
+}
+
+.articles-table-card tr:hover {
+  background-color: #f0f5fa; 
+}
+
+.action-button {
+  margin-right: 0; 
+}
+
+.action-button-small {
+  padding: 6px 10px; 
+  font-size: 0.88em;
+}
+
+.search-input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95em;
+  min-width: 280px;
+} 

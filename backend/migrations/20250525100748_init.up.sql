@@ -1,9 +1,19 @@
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL
+    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL,
+    is_blocked BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-
+CREATE TABLE IF NOT EXISTS articles (
+    id SERIAL PRIMARY KEY,
+    author_id INT NOT NULL,
+    review_id INT NOT NULL DEFAULT 0,
+    title TEXT NOT NULL,
+    category TEXT NOT NULL,
+    content TEXT NOT NULL,
+    is_reviewed BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

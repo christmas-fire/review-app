@@ -21,7 +21,7 @@ func main() {
 
 	repository := repositories.NewRepository(db)
 	service := services.NewService(repository)
-	controller := controllers.NewAuthController(service)
+	controller := controllers.NewController(service)
 
 	r := routes.InitRouter(controller)
 	if err := r.Run(cfg.Port); err != nil {

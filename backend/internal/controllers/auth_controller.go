@@ -46,7 +46,6 @@ func (h *AuthController) LoginHandler(c *gin.Context) {
 
 	token, err := h.service.Login(req.Username, req.Password)
 	if err != nil {
-		// Differentiate between invalid credentials and other errors if desired
 		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
