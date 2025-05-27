@@ -16,15 +16,10 @@ tasks:
     dir: "{{.BACKEND_DIR}}"
     cmds:
       - go build -o ../{{.BACKEND_EXE}} ./cmd/main.go
-    sources:
-      - ./cmd/**/*.go
-      - go.mod
-      - go.sum
-    generates:
-      - ../{{.BACKEND_EXE}}
 
   run-backend:
-    deps: [build-backend]
+    deps: 
+      - build-backend
     cmds:
       - ./{{.BACKEND_EXE}}
 

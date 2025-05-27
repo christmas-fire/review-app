@@ -1,7 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SplashScreen.css';
 
 function SplashScreen({ onNavigate }) {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    onNavigate('login');
+    navigate('/auth');
+  };
+
+  const handleRegisterClick = () => {
+    onNavigate('register');
+    navigate('/auth');
+  };
+
   return (
     <div className="splash-screen-container">
       <div className="splash-content">
@@ -9,13 +22,13 @@ function SplashScreen({ onNavigate }) {
         <p className="splash-tagline">Платформа для рецензирования статей</p>
         <div className="splash-actions">
             <button 
-              onClick={() => onNavigate('login')} 
+              onClick={handleLoginClick}
               className="splash-button splash-button-primary"
             >
               Войти
             </button>
             <button 
-              onClick={() => onNavigate('register')} 
+              onClick={handleRegisterClick}
               className="splash-button splash-button-secondary"
             >
               Регистрация
