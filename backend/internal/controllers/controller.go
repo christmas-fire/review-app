@@ -21,6 +21,7 @@ type User interface {
 type Article interface {
 	CreateArticle(c *gin.Context)
 	GetAllArticles(c *gin.Context)
+	GetArticleByID(c *gin.Context)
 	DeleteArticle(c *gin.Context)
 	MyArticles(c *gin.Context)
 	GetAvailableArticles(c *gin.Context)
@@ -28,6 +29,7 @@ type Article interface {
 
 type Review interface {
 	CreateReview(c *gin.Context)
+	GetReviewByID(c *gin.Context)
 	MyReviews(c *gin.Context)
 }
 

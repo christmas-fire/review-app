@@ -37,8 +37,19 @@ func (r *ArticlePostgres) GetAllArticles() ([]models.Article, error) {
 	return articles, err
 }
 
+func (r *ArticlePostgres) GetArticleByID(id int) (models.Article, error) {
+	var article models.Article
+	query := `
+		SELECT id, author_id, review_id, title, category, content, is_reviewed, created_at 
+		FROM articles 
+		WHERE id = $1`
+	err := r.db.Get(&article, query, id)
+
+	return article, err
+}
+
 func (r *ArticlePostgres) DeleteArticle(id int) error {
-	query := "DELETE FROM articles WHERE id=$1"
+	query := "DELETE FROM articles WHERE id = $1"
 	_, err := r.db.Exec(query, id)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {

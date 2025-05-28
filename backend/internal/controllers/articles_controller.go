@@ -63,6 +63,30 @@ func (h *ArticleController) GetAllArticles(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"articles": articles})
 }
 
+func (h *ArticleController) GetArticleByID(c *gin.Context) {
+	_, ok := middleware.GetUserIDFromContext(c)
+	if !ok {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	idStr := c.Param("id")
+
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id format"})
+		return
+	}
+
+	article, err := h.service.GetArticleByID(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"article": article})
+}
+
 func (h *ArticleController) DeleteArticle(c *gin.Context) {
 	_, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
@@ -84,7 +108,6 @@ func (h *ArticleController) DeleteArticle(c *gin.Context) {
 	}
 
 	c.Status(http.StatusNoContent)
-
 }
 
 func (h *ArticleController) MyArticles(c *gin.Context) {

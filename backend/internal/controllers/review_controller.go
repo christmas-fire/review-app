@@ -47,6 +47,30 @@ func (h *ReviewController) CreateReview(c *gin.Context) {
 	c.JSON(http.StatusCreated, gin.H{"id": id})
 }
 
+func (h *ReviewController) GetReviewByID(c *gin.Context) {
+	_, ok := middleware.GetUserIDFromContext(c)
+	if !ok {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	idStr := c.Param("id")
+
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id format"})
+		return
+	}
+
+	review, err := h.service.GetReviewByID(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"review": review})
+}
+
 func (h *ReviewController) MyReviews(c *gin.Context) {
 	idStr, ok := middleware.GetUserIDFromContext(c)
 	if !ok {

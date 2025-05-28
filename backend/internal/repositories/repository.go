@@ -21,6 +21,7 @@ type User interface {
 type Article interface {
 	CreateArticle(article models.Article) (int, error)
 	GetAllArticles() ([]models.Article, error)
+	GetArticleByID(id int) (models.Article, error)
 	DeleteArticle(id int) error
 	MyArticles(id int) ([]models.Article, error)
 	GetAvailableArticles() ([]models.Article, error)
@@ -28,6 +29,7 @@ type Article interface {
 
 type Review interface {
 	CreateReview(review models.Review) (int, error)
+	GetReviewByID(id int) (models.Review, error)
 	MyReviews(id int) ([]models.Review, error)
 }
 

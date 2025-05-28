@@ -1,0 +1,124 @@
+/* MyReviewsList.module.css */
+.myReviewsContainer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.loadingMessage,
+.errorMessage,
+.noReviewsMessage {
+    text-align: center;
+    font-size: 1em;
+    padding: 15px;
+    color: #555;
+}
+
+.errorMessage {
+    color: #d9534f;
+}
+
+.reviewList {
+    list-style: none;
+    padding: 0;
+}
+
+.reviewItem {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.articleInfo {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.status {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.status.accepted {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+}
+
+.status.rejected {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red */
+}
+
+.reviewContent {
+    font-size: 1em;
+    color: #454545;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.reviewContent strong {
+    color: #333;
+}
+
+.reviewFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #ddd;
+}
+
+.score {
+    font-weight: 500;
+}
+
+.date {
+    /* Style for date if needed */
+}
+
+.viewArticleButton {
+    display: block;
+    width: calc(100% - 30px); /* Full width minus padding of parent */
+    margin: 15px auto 0;
+    padding: 10px 15px;
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.viewArticleButton:hover {
+    background-color: #0056b3; /* Darker blue */
+} 

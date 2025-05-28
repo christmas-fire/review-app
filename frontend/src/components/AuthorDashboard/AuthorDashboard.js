@@ -90,7 +90,7 @@ function AuthorDashboard() {
             </Link>
           </li>
           <li className={styles.authorDashboardLi}>
-            <Link to="/author/profile" className={styles.authorDashboardLink}>
+            <Link to="/profile" className={styles.authorDashboardLink}>
               <span className={styles.linkIcon}>&#128100;</span> {/* Icon: User silhouette */}
               Личный кабинет
             </Link>

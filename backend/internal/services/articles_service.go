@@ -21,6 +21,10 @@ func (s *ArticleService) GetAllArticles() ([]models.Article, error) {
 	return s.repo.GetAllArticles()
 }
 
+func (s *ArticleService) GetArticleByID(id int) (models.Article, error) {
+	return s.repo.GetArticleByID(id)
+}
+
 func (s *ArticleService) DeleteArticle(id int) error {
 	return s.repo.DeleteArticle(id)
 }

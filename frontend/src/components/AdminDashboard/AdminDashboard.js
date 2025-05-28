@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './AdminDashboard.css'; 
 
 const API_BASE_URL = 'http://localhost:8080'; 
 
 function AdminDashboard() {
   const user = JSON.parse(localStorage.getItem('user'));
+  const navigate = useNavigate();
 
   const [articleCount, setArticleCount] = useState('N/A');
   const [userCount, setUserCount] = useState('N/A');
