@@ -9,15 +9,15 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-type ArticlesPostgres struct {
+type ArticlePostgres struct {
 	db *sqlx.DB
 }
 
-func NewArticlesPostgres(db *sqlx.DB) *ArticlesPostgres {
-	return &ArticlesPostgres{db: db}
+func NewArticlePostgres(db *sqlx.DB) *ArticlePostgres {
+	return &ArticlePostgres{db: db}
 }
 
-func (r *ArticlesPostgres) CreateArticle(article models.Article) (int, error) {
+func (r *ArticlePostgres) CreateArticle(article models.Article) (int, error) {
 	var id int
 
 	query := "INSERT INTO articles (author_id, title, category, content) VALUES ($1, $2, $3, $4) RETURNING id"
@@ -29,7 +29,7 @@ func (r *ArticlesPostgres) CreateArticle(article models.Article) (int, error) {
 	return id, nil
 }
 
-func (r *ArticlesPostgres) GetAllArticles() ([]models.Article, error) {
+func (r *ArticlePostgres) GetAllArticles() ([]models.Article, error) {
 	var articles []models.Article
 	query := "SELECT id, author_id, review_id, title, category, content, is_reviewed, created_at FROM articles"
 	err := r.db.Select(&articles, query)
@@ -37,7 +37,7 @@ func (r *ArticlesPostgres) GetAllArticles() ([]models.Article, error) {
 	return articles, err
 }
 
-func (r *ArticlesPostgres) DeleteArticle(id int) error {
+func (r *ArticlePostgres) DeleteArticle(id int) error {
 	query := "DELETE FROM articles WHERE id=$1"
 	_, err := r.db.Exec(query, id)
 	if err != nil {
@@ -50,7 +50,7 @@ func (r *ArticlesPostgres) DeleteArticle(id int) error {
 	return nil
 }
 
-func (r *ArticlesPostgres) MyArticles(id int) ([]models.Article, error) {
+func (r *ArticlePostgres) MyArticles(id int) ([]models.Article, error) {
 	var articles []models.Article
 	query := "SELECT id, author_id, review_id, title, category, content, is_reviewed, created_at FROM articles WHERE author_id=$1"
 	err := r.db.Select(&articles, query, id)

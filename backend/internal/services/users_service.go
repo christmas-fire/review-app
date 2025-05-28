@@ -7,15 +7,15 @@ import (
 	"github.com/christmas-fire/review-app/backend/internal/repositories"
 )
 
-type UsersService struct {
-	repo repositories.Users
+type UserService struct {
+	repo repositories.User
 }
 
-func NewUsersService(repo repositories.Users) *UsersService {
-	return &UsersService{repo: repo}
+func NewUserService(repo repositories.User) *UserService {
+	return &UserService{repo: repo}
 }
 
-func (s *UsersService) CreateUser(user models.User) (int, error) {
+func (s *UserService) CreateUser(user models.User) (int, error) {
 	if err := validateUser(user); err != nil {
 		return 0, fmt.Errorf("validation failed: %w", err)
 	}
@@ -23,23 +23,23 @@ func (s *UsersService) CreateUser(user models.User) (int, error) {
 	if err := validateRole(user.Role); err != nil {
 		return 0, fmt.Errorf("validation failed: %w", err)
 	}
-	user.Password = generatePasswordHash(user.Password)
+	user.Password, _ = generatePasswordHash(user.Password)
 
 	return s.repo.CreateUser(user)
 }
 
-func (s *UsersService) GetAllUsers() ([]models.User, error) {
+func (s *UserService) GetAllUsers() ([]models.User, error) {
 	return s.repo.GetAllUsers()
 }
 
-func (s *UsersService) DeleteUser(id int) error {
+func (s *UserService) DeleteUser(id int) error {
 	return s.repo.DeleteUser(id)
 }
 
-func (s *UsersService) BlockUser(id int) error {
+func (s *UserService) BlockUser(id int) error {
 	return s.repo.BlockUser(id)
 }
 
-func (s *UsersService) MyProfile(id int) (models.User, error) {
+func (s *UserService) MyProfile(id int) (models.User, error) {
 	return s.repo.MyProfile(id)
 }
