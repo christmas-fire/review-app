@@ -28,3 +28,7 @@ func (s *ArticleService) DeleteArticle(id int) error {
 func (s *ArticleService) MyArticles(id int) ([]models.Article, error) {
 	return s.repo.MyArticles(id)
 }
+
+func (s *ArticleService) GetAvailableArticles() ([]models.Article, error) {
+	return s.repo.GetAvailableArticles()
+}

@@ -23,11 +23,12 @@ type Article interface {
 	GetAllArticles(c *gin.Context)
 	DeleteArticle(c *gin.Context)
 	MyArticles(c *gin.Context)
+	GetAvailableArticles(c *gin.Context)
 }
 
 type Review interface {
 	CreateReview(c *gin.Context)
-	// MyReviews(c *gin.Context)
+	MyReviews(c *gin.Context)
 }
 
 type Controller struct {

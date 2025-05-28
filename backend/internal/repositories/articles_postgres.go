@@ -57,3 +57,11 @@ func (r *ArticlePostgres) MyArticles(id int) ([]models.Article, error) {
 
 	return articles, err
 }
+
+func (r *ArticlePostgres) GetAvailableArticles() ([]models.Article, error) {
+	var articles []models.Article
+	query := "SELECT id, author_id, review_id, title, category, content, is_reviewed, created_at FROM articles WHERE is_reviewed=false"
+	err := r.db.Select(&articles, query)
+
+	return articles, err
+}

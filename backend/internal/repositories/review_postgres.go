@@ -53,3 +53,11 @@ func (r *ReviewPostgres) CreateReview(review models.Review) (int, error) {
 
 	return id, nil
 }
+
+func (r *ReviewPostgres) MyReviews(id int) ([]models.Review, error) {
+	var reviews []models.Review
+	query := "SELECT id, reviewer_id, article_id, content, score, status, created_at FROM reviews WHERE reviewer_id=$1"
+	err := r.db.Select(&reviews, query, id)
+
+	return reviews, err
+}

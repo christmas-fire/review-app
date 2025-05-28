@@ -37,7 +37,7 @@ func (h *UserController) CreateUser(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"id": id})
+	c.JSON(http.StatusCreated, gin.H{"id": id})
 }
 
 func (h *UserController) GetAllUsers(c *gin.Context) {

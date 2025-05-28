@@ -44,7 +44,7 @@ func (h *ArticleController) CreateArticle(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"id": id})
+	c.JSON(http.StatusCreated, gin.H{"id": id})
 }
 
 func (h *ArticleController) GetAllArticles(c *gin.Context) {
@@ -101,6 +101,22 @@ func (h *ArticleController) MyArticles(c *gin.Context) {
 	}
 
 	articles, err := h.service.MyArticles(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"articles": articles})
+}
+
+func (h *ArticleController) GetAvailableArticles(c *gin.Context) {
+	_, ok := middleware.GetUserIDFromContext(c)
+	if !ok {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	articles, err := h.service.GetAvailableArticles()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

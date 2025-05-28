@@ -4,7 +4,7 @@ import "time"
 
 type Review struct {
 	ID         int       `json:"id" db:"id"`
-	ReviewerID int       `json:"reviewer_id" db:"reviewer"`
+	ReviewerID int       `json:"reviewer_id" db:"reviewer_id"`
 	ArticleID  int       `json:"article_id" db:"article_id"`
 	Content    string    `json:"content" db:"content"`
 	Score      int       `json:"score" db:"score"`

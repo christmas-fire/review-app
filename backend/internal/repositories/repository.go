@@ -23,10 +23,12 @@ type Article interface {
 	GetAllArticles() ([]models.Article, error)
 	DeleteArticle(id int) error
 	MyArticles(id int) ([]models.Article, error)
+	GetAvailableArticles() ([]models.Article, error)
 }
 
 type Review interface {
 	CreateReview(review models.Review) (int, error)
+	MyReviews(id int) ([]models.Review, error)
 }
 
 type Repository struct {
