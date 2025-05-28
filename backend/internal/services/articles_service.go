@@ -5,26 +5,34 @@ import (
 	"github.com/christmas-fire/review-app/backend/internal/repositories"
 )
 
-type ArticlesService struct {
-	repo repositories.Articles
+type ArticleService struct {
+	repo repositories.Article
 }
 
-func NewArticlesService(repo repositories.Articles) *ArticlesService {
-	return &ArticlesService{repo: repo}
+func NewArticleService(repo repositories.Article) *ArticleService {
+	return &ArticleService{repo: repo}
 }
 
-func (s *ArticlesService) CreateArticle(article models.Article) (int, error) {
+func (s *ArticleService) CreateArticle(article models.Article) (int, error) {
 	return s.repo.CreateArticle(article)
 }
 
-func (s *ArticlesService) GetAllArticles() ([]models.Article, error) {
+func (s *ArticleService) GetAllArticles() ([]models.Article, error) {
 	return s.repo.GetAllArticles()
 }
 
-func (s *ArticlesService) DeleteArticle(id int) error {
+func (s *ArticleService) GetArticleByID(id int) (models.Article, error) {
+	return s.repo.GetArticleByID(id)
+}
+
+func (s *ArticleService) DeleteArticle(id int) error {
 	return s.repo.DeleteArticle(id)
 }
 
-func (s *ArticlesService) MyArticles(id int) ([]models.Article, error) {
+func (s *ArticleService) MyArticles(id int) ([]models.Article, error) {
 	return s.repo.MyArticles(id)
+}
+
+func (s *ArticleService) GetAvailableArticles() ([]models.Article, error) {
+	return s.repo.GetAvailableArticles()
 }

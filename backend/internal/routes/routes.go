@@ -29,27 +29,32 @@ func InitRouter(h *controllers.Controller) *gin.Engine {
 		users := apiV1.Group("/users")
 		users.Use(middleware.AuthMiddleware())
 		{
-			users.POST("/", middleware.RoleMiddleware("admin"), h.Users.CreateUser)
-			users.GET("/", middleware.RoleMiddleware("admin"), h.Users.GetAllUsers)
-			users.DELETE("/:id", middleware.RoleMiddleware("admin"), h.Users.DeleteUser)
-			users.PATCH("/:id/block", middleware.RoleMiddleware("admin"), h.Users.BlockUser)
-			users.GET("/my", middleware.RoleMiddleware("author"), h.MyProfile)
+			users.POST("/", middleware.RoleMiddleware("admin"), h.User.CreateUser)
+			users.GET("/", middleware.RoleMiddleware("admin"), h.User.GetAllUsers)
+			users.DELETE("/:id", middleware.RoleMiddleware("admin"), h.User.DeleteUser)
+			users.PATCH("/:id/block", middleware.RoleMiddleware("admin"), h.User.BlockUser)
+			users.GET("/my", middleware.RoleMiddleware("author", "reviewer"), h.User.MyProfile)
 		}
 
 		articles := apiV1.Group("/articles")
 		articles.Use(middleware.AuthMiddleware())
 		{
-			articles.POST("/", middleware.RoleMiddleware("author"), h.Articles.CreateArticle)
-			articles.GET("/", middleware.RoleMiddleware("admin"), h.Articles.GetAllArticles)
-			articles.DELETE("/:id", middleware.RoleMiddleware("admin"), h.Articles.DeleteArticle)
-			articles.GET("/my", middleware.RoleMiddleware("author"), h.MyArticles)
+			articles.POST("/", middleware.RoleMiddleware("author"), h.Article.CreateArticle)
+			articles.GET("/", middleware.RoleMiddleware("admin"), h.Article.GetAllArticles)
+			articles.GET("/:id", middleware.RoleMiddleware("author", "reviewer"), h.Article.GetArticleByID)
+			articles.DELETE("/:id", middleware.RoleMiddleware("admin"), h.Article.DeleteArticle)
+			articles.GET("/my", middleware.RoleMiddleware("author"), h.Article.MyArticles)
+			articles.GET("/available", middleware.RoleMiddleware("reviewer"), h.Article.GetAvailableArticles)
 
 		}
 
-		// reviews := apiV1.Group("/reviews")
-		// {
-
-		// }
+		reviews := apiV1.Group("/reviews")
+		reviews.Use(middleware.AuthMiddleware())
+		{
+			reviews.POST("/", middleware.RoleMiddleware("reviewer"), h.Review.CreateReview)
+			reviews.GET("/:id", middleware.RoleMiddleware("author", "reviewer"), h.Review.GetReviewByID)
+			reviews.GET("/my", middleware.RoleMiddleware("reviewer"), h.Review.MyReviews)
+		}
 	}
 
 	return router

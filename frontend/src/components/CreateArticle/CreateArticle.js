@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CreateArticle.module.css';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 const API_BASE_URL = 'http://localhost:8080';
 
@@ -53,6 +54,10 @@ function CreateArticle() {
   return (
     <div className={styles.createArticleContainer}>
       <h2 className={styles.title}>Создать статью</h2>
+      <Breadcrumbs items={[
+        { label: 'Панель автора', to: '/author/dashboard' },
+        { label: 'Создать статью' }
+      ]} />
       {error && <p className={styles.errorMessage}>{error}</p>}
       {success && <p className={styles.successMessage}>{success}</p>}
       <form onSubmit={handleSubmit} className={styles.form}>

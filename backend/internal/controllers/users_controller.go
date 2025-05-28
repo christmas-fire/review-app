@@ -10,15 +10,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type UsersController struct {
-	service *services.Service
+type UserController struct {
+	service services.User
 }
 
-func NewUsersController(service *services.Service) *UsersController {
-	return &UsersController{service: service}
+func NewUserController(service *services.Service) *UserController {
+	return &UserController{service: service}
 }
 
-func (h *UsersController) CreateUser(c *gin.Context) {
+func (h *UserController) CreateUser(c *gin.Context) {
 	_, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
@@ -31,23 +31,23 @@ func (h *UsersController) CreateUser(c *gin.Context) {
 		return
 	}
 
-	id, err := h.service.Users.CreateUser(user)
+	id, err := h.service.CreateUser(user)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"id": id})
+	c.JSON(http.StatusCreated, gin.H{"id": id})
 }
 
-func (h *UsersController) GetAllUsers(c *gin.Context) {
+func (h *UserController) GetAllUsers(c *gin.Context) {
 	_, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
 		return
 	}
 
-	users, err := h.service.Users.GetAllUsers()
+	users, err := h.service.GetAllUsers()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -56,7 +56,7 @@ func (h *UsersController) GetAllUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"users": users})
 }
 
-func (h *UsersController) DeleteUser(c *gin.Context) {
+func (h *UserController) DeleteUser(c *gin.Context) {
 	_, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
@@ -71,7 +71,7 @@ func (h *UsersController) DeleteUser(c *gin.Context) {
 		return
 	}
 
-	if err := h.service.Users.DeleteUser(id); err != nil {
+	if err := h.service.DeleteUser(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
@@ -79,7 +79,7 @@ func (h *UsersController) DeleteUser(c *gin.Context) {
 	c.Status(http.StatusNoContent)
 }
 
-func (h *UsersController) BlockUser(c *gin.Context) {
+func (h *UserController) BlockUser(c *gin.Context) {
 	_, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
@@ -94,7 +94,7 @@ func (h *UsersController) BlockUser(c *gin.Context) {
 		return
 	}
 
-	if err := h.service.Users.BlockUser(id); err != nil {
+	if err := h.service.BlockUser(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
@@ -102,7 +102,7 @@ func (h *UsersController) BlockUser(c *gin.Context) {
 	c.Status(http.StatusNoContent)
 }
 
-func (h *UsersController) MyProfile(c *gin.Context) {
+func (h *UserController) MyProfile(c *gin.Context) {
 	idStr, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
@@ -115,7 +115,7 @@ func (h *UsersController) MyProfile(c *gin.Context) {
 		return
 	}
 
-	user, err := h.service.Users.MyProfile(id)
+	user, err := h.service.MyProfile(id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 		return

@@ -1,0 +1,152 @@
+/* ArticleCard.module.css */
+/* Styles copied and adapted from AvailableReviews.module.css for a generic Article Card */
+
+.articleCardItem {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px; /* Adjusted padding */
+    margin-bottom: 0; /* Let the parent gap handle spacing */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    transition: box-shadow 0.3s ease, transform 0.2s ease-in-out;
+    /* Flex item properties for responsive layout, similar to statCard */
+    flex-basis: 280px; /* Adjust basis as needed, slightly larger than stat cards */
+    flex-grow: 1;
+    min-width: 250px; /* Ensure a minimum width before wrapping */
+    max-width: 400px; /* Optional: if you want to constrain max width */
+    display: flex; /* To allow internal flex structuring if needed, e.g., for footer */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Push button to bottom if card heights vary */
+}
+
+.articleCardItem:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    transform: translateY(-4px); /* Matched to statCard hover */
+}
+
+.cardTitle {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #2c3e50; /* Changed from blue to dark gray/blue */
+    font-size: 1.8em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.metaInfoContainerTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.metaInfoContainerBottom {
+    text-align: center;
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    display: flex; /* For status + date */
+    flex-direction: column; /* Stack status and date */
+    align-items: center;
+    gap: 8px;
+}
+
+.categoryTag,
+.authorTag {
+    font-size: 1em;          /* Relative to parent .metaInfoContainerTop, to better match dateText size */
+    color: #6c757d;          /* Explicitly match dateText style color */
+    /* Spacing is handled by parent flex 'gap' */
+}
+
+.dateText {
+    font-size: 1em; /* Relative to .metaInfoContainerBottom */
+    color: #6c757d;
+}
+
+.contentSnippet {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center; /* Changed back to center */
+    background-color: #f8f9fa; /* Light background */
+    padding: 15px;             /* Padding around the text */
+    border: 1px solid #e9ecef; /* Subtle border */
+    border-radius: 4px;        /* Rounded corners for the text block */
+}
+
+.statusText {
+    font-size: 0.95em; /* Relative to .metaInfoContainerBottom or absolute */
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Specific status colors - can be passed as classNames too */
+.statusReviewed {
+  color: #27ae60; /* Green */
+  font-weight: bold;
+}
+
+.statusPending {
+  color: #e67e22; /* Orange */
+  font-weight: bold;
+}
+
+/* Added for AvailableReviews to be specific */
+.statusPendingArticle {
+  color: #e67e22; /* Orange */
+  font-weight: bold;
+}
+
+.statusRejected {
+  color: #dc3545; /* Red */
+  font-weight: bold;
+}
+
+.actionButtonContainer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.actionButton {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #007bff; /* Changed to blue */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1em; /* Ensure consistency */
+    transition: background-color 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.actionButton:hover {
+    background-color: #0056b3; /* Darker blue for hover */
+}
+
+/* Responsive adjustments for the card content */
+@media (max-width: 600px) {
+    .metaInfoContainerTop,
+    .metaInfoContainerBottom {
+        gap: 8px;
+    }
+
+    .categoryTag,
+    .authorTag,
+    .dateText {
+        margin-bottom: 5px; /* Ensure spacing in column layout if they wrap*/
+    }
+
+    .actionButton {
+        width: auto; 
+        max-width: 90%;
+        padding: 12px 20px;
+    }
+} 

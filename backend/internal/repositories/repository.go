@@ -10,7 +10,7 @@ type Auth interface {
 	Login(username, password string) (models.User, error)
 }
 
-type Users interface {
+type User interface {
 	CreateUser(user models.User) (int, error)
 	GetAllUsers() ([]models.User, error)
 	DeleteUser(id int) error
@@ -18,23 +18,33 @@ type Users interface {
 	MyProfile(id int) (models.User, error)
 }
 
-type Articles interface {
+type Article interface {
 	CreateArticle(article models.Article) (int, error)
 	GetAllArticles() ([]models.Article, error)
+	GetArticleByID(id int) (models.Article, error)
 	DeleteArticle(id int) error
 	MyArticles(id int) ([]models.Article, error)
+	GetAvailableArticles() ([]models.Article, error)
+}
+
+type Review interface {
+	CreateReview(review models.Review) (int, error)
+	GetReviewByID(id int) (models.Review, error)
+	MyReviews(id int) ([]models.Review, error)
 }
 
 type Repository struct {
 	Auth
-	Users
-	Articles
+	User
+	Article
+	Review
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		Auth:     NewAuthPostgres(db),
-		Users:    NewUsersPostgres(db),
-		Articles: NewArticlesPostgres(db),
+		Auth:    NewAuthPostgres(db),
+		User:    NewUserPostgres(db),
+		Article: NewArticlePostgres(db),
+		Review:  NewReviewPostgres(db),
 	}
 }

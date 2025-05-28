@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './ArticleManagement.css'; // We'll create this CSS file next
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 const API_BASE_URL = 'http://localhost:8080'; // Consistent API base URL
 
@@ -84,9 +85,11 @@ function ArticleManagement() {
     <div className="page-container">
       <header className="page-header">
         <h1 className="page-title">Управление статьями</h1>
-        <nav className="breadcrumbs">
-          <Link to="/admin/dashboard">Панель администратора</Link> &gt; Управление статьями
-        </nav>
+        <Breadcrumbs items={[
+          { label: 'Панель администратора', to: '/admin/dashboard' },
+          { label: 'Управление статьями' }
+        ]} />
+        <nav className="breadcrumbs" style={{ display: 'none' }}></nav> {/* старые крошки скрыты */}
       </header>
 
       <div className="actions-bar">

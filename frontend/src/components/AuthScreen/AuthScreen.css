@@ -6,6 +6,7 @@
     padding: 20px;
     box-sizing: border-box;
     background-color: #f0f2f5;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   }
   
   .auth-form-wrapper {
@@ -20,9 +21,9 @@
   
   .auth-title {
     text-align: center;
-    color: #333;
+    color: #2c3e50;
     margin-bottom: 25px;
-    font-size: 1.8em;
+    font-size: 2em;
     font-weight: 600;
   }
   
@@ -54,8 +55,8 @@
   
   .form-group input:focus {
     outline: none;
-    border-color: #7c4dff;
-    box-shadow: 0 0 0 0.2rem rgba(124, 77, 255, 0.25);
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
   
   .submit-button {
@@ -65,7 +66,6 @@
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 1.1em;
     font-weight: 600;
     cursor: pointer;
     transition: opacity 0.3s ease;
@@ -79,8 +79,9 @@
   }
   
   .submit-button:disabled {
-    background: #adb5bd;
+    background-color: #adb5bd;
     cursor: not-allowed;
+    opacity: 0.7;
   }
   
   .error-message {
@@ -139,6 +140,6 @@
   
   .form-select:focus {
     outline: none;
-    border-color: #7c4dff;
-    box-shadow: 0 0 0 0.2rem rgba(124, 77, 255, 0.25);
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }

@@ -3,18 +3,16 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  min-width: 500px;
-  margin: 40px auto;
+  background-color: #f0f2f5;
+  max-width: 800px;
+  margin: 20px auto;
   font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .title {
-  color: #333;
-  margin-bottom: 25px;
-  font-size: 2em;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 2.2em;
   font-weight: 600;
   text-align: center;
 }
@@ -40,101 +38,23 @@
 }
 
 .articleList {
-  list-style: none;
-  padding: 0;
-  width: 100%;
+  /* width: 100%; */ /* Replaced by flex properties */
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center; /* Or space-around, depending on desired alignment */
+  gap: 20px; /* Spacing between cards */
+  padding: 0; /* Remove default padding if any */
+  list-style: none; /* Remove default list styles if it was a ul/ol */
 }
 
-.articleItem {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-  margin-bottom: 20px;
+.backButtonContainer {
+    text-align: center;
+    margin-top: 30px;
 }
-
-.articleItem:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  transform: translateY(-3px);
-}
-
-.articleTitle {
-  margin-top: 0;
-  margin-bottom: 12px;
-  color: #2c3e50;
-  font-size: 1.7em;
-  font-weight: 600;
-}
-
-.articleMetaTop {
-  margin-bottom: 10px;
-}
-
-.articleMetaBottom {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: #7f8c8d;
-}
-
-.articleCategory {
-  background-color: #ecf0f1;
-  color: #34495e;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 500;
-}
-
-.articleContentSnippet {
-  font-size: 1em;
-  line-height: 1.6;
-  color: #34495e;
-  margin-bottom: 0;
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-}
-
-.articleStatus {
-  font-size: 0.95em;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-
-.statusReviewed {
-  color: #27ae60;
-  font-weight: bold;
-}
-
-.statusPending {
-  color: #e67e22;
-  font-weight: bold;
-}
-
-/* Optional: Styles for a "Read More" link */
-/*
-.readMoreLink {
-  display: inline-block;
-  margin-top: 10px;
-  color: #3498db;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.readMoreLink:hover {
-  text-decoration: underline;
-}
-*/
 
 .backButton {
-  margin-top: 30px;
+  display: inline-block;
+  margin-top: 0;
   padding: 10px 18px;
   background-color: #6c757d;
   color: white;

@@ -32,7 +32,7 @@ func (s *AuthService) Register(user models.User) (int, error) {
 	if err := validateUser(user); err != nil {
 		return 0, fmt.Errorf("validation failed: %w", err)
 	}
-	user.Password = generatePasswordHash(user.Password)
+	user.Password, _ = generatePasswordHash(user.Password)
 	return s.repo.Register(user)
 }
 

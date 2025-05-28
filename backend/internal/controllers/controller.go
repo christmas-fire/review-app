@@ -10,7 +10,7 @@ type Auth interface {
 	LoginHandler(c *gin.Context)
 }
 
-type Users interface {
+type User interface {
 	CreateUser(c *gin.Context)
 	GetAllUsers(c *gin.Context)
 	DeleteUser(c *gin.Context)
@@ -18,23 +18,33 @@ type Users interface {
 	MyProfile(c *gin.Context)
 }
 
-type Articles interface {
+type Article interface {
 	CreateArticle(c *gin.Context)
 	GetAllArticles(c *gin.Context)
+	GetArticleByID(c *gin.Context)
 	DeleteArticle(c *gin.Context)
 	MyArticles(c *gin.Context)
+	GetAvailableArticles(c *gin.Context)
+}
+
+type Review interface {
+	CreateReview(c *gin.Context)
+	GetReviewByID(c *gin.Context)
+	MyReviews(c *gin.Context)
 }
 
 type Controller struct {
 	Auth
-	Users
-	Articles
+	User
+	Article
+	Review
 }
 
 func NewController(services *services.Service) *Controller {
 	return &Controller{
-		Auth:     NewAuthController(services),
-		Users:    NewUsersController(services),
-		Articles: NewArticlesController(services),
+		Auth:    NewAuthController(services),
+		User:    NewUserController(services),
+		Article: NewArticleController(services),
+		Review:  NewReviewController(services),
 	}
 }

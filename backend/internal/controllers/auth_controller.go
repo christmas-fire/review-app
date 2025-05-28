@@ -29,7 +29,7 @@ func (h *AuthController) RegisterHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"id": id})
+	c.JSON(http.StatusCreated, gin.H{"id": id})
 }
 
 type loginRequest struct {

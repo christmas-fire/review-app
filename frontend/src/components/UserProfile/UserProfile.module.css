@@ -1,0 +1,115 @@
+/* UserProfile.module.css */
+.userProfileContainer {
+    max-width: 800px;
+    margin: 40px auto; /* Added more top/bottom margin for a dedicated page */
+    padding: 20px;
+    background-color: #f0f2f5; /* Consistent page background */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    border-radius: 8px; /* Optional: if the container itself should have rounded corners */
+}
+
+.title {
+    color: #2c3e50; /* Consistent title color */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+.profileCard {
+    background-color: #fff;
+    padding: 30px 40px; /* Generous padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    margin-top: 20px;
+}
+
+/* Removed Table Styles */
+
+/* New Profile Info List Styles */
+.profileInfoList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between each profile field group */
+}
+
+.profileField {
+    padding: 10px 0; /* Adjusted padding */
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profileField:last-child {
+    border-bottom: none;
+}
+
+.profileLabel {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9em; /* Slightly smaller label */
+    display: block; /* Make label take full width and stack */
+    margin-bottom: 6px; /* Space between label and value */
+}
+
+.profileValue {
+    color: #212529;
+    font-size: 1.1em; /* Slightly larger value text */
+    word-break: break-word;
+    display: block; /* Ensure value also takes full width if needed */
+}
+
+.loadingMessage,
+.errorMessage,
+.noDataMessage {
+    text-align: center;
+    font-size: 1.1em;
+    padding: 20px;
+    color: #555;
+    margin-top: 20px;
+}
+
+.errorMessage {
+    color: #d9534f; /* Bootstrap danger color */
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+}
+
+/* Styles for an optional Edit Profile button */
+.buttonContainer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.editProfileButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green, consistent with other primary actions */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+    border: none;
+}
+
+.editProfileButton:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.backButton {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 18px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.backButton:hover {
+    background-color: #5a6268;
+} 

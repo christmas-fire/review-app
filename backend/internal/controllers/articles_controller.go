@@ -10,15 +10,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type ArticlesController struct {
-	service *services.Service
+type ArticleController struct {
+	service services.Article
 }
 
-func NewArticlesController(service *services.Service) *ArticlesController {
-	return &ArticlesController{service: service}
+func NewArticleController(service *services.Service) *ArticleController {
+	return &ArticleController{service: service}
 }
 
-func (h *ArticlesController) CreateArticle(c *gin.Context) {
+func (h *ArticleController) CreateArticle(c *gin.Context) {
 	authorIdStr, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
@@ -38,23 +38,23 @@ func (h *ArticlesController) CreateArticle(c *gin.Context) {
 	}
 	article.AuthorID = authorId
 
-	id, err := h.service.Articles.CreateArticle(article)
+	id, err := h.service.CreateArticle(article)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"id": id})
+	c.JSON(http.StatusCreated, gin.H{"id": id})
 }
 
-func (h *ArticlesController) GetAllArticles(c *gin.Context) {
+func (h *ArticleController) GetAllArticles(c *gin.Context) {
 	_, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
 		return
 	}
 
-	articles, err := h.service.Articles.GetAllArticles()
+	articles, err := h.service.GetAllArticles()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -63,7 +63,7 @@ func (h *ArticlesController) GetAllArticles(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"articles": articles})
 }
 
-func (h *ArticlesController) DeleteArticle(c *gin.Context) {
+func (h *ArticleController) GetArticleByID(c *gin.Context) {
 	_, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
@@ -78,16 +78,39 @@ func (h *ArticlesController) DeleteArticle(c *gin.Context) {
 		return
 	}
 
-	if err := h.service.Articles.DeleteArticle(id); err != nil {
+	article, err := h.service.GetArticleByID(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"article": article})
+}
+
+func (h *ArticleController) DeleteArticle(c *gin.Context) {
+	_, ok := middleware.GetUserIDFromContext(c)
+	if !ok {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	idStr := c.Param("id")
+
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id format"})
+		return
+	}
+
+	if err := h.service.DeleteArticle(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
 
 	c.Status(http.StatusNoContent)
-
 }
 
-func (h *ArticlesController) MyArticles(c *gin.Context) {
+func (h *ArticleController) MyArticles(c *gin.Context) {
 	idStr, ok := middleware.GetUserIDFromContext(c)
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
@@ -100,7 +123,23 @@ func (h *ArticlesController) MyArticles(c *gin.Context) {
 		return
 	}
 
-	articles, err := h.service.Articles.MyArticles(id)
+	articles, err := h.service.MyArticles(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"articles": articles})
+}
+
+func (h *ArticleController) GetAvailableArticles(c *gin.Context) {
+	_, ok := middleware.GetUserIDFromContext(c)
+	if !ok {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	articles, err := h.service.GetAvailableArticles()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

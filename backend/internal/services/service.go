@@ -14,7 +14,7 @@ type Auth interface {
 	Login(username, password string) (string, error)
 }
 
-type Users interface {
+type User interface {
 	CreateUser(user models.User) (int, error)
 	GetAllUsers() ([]models.User, error)
 	DeleteUser(id int) error
@@ -22,35 +22,43 @@ type Users interface {
 	MyProfile(id int) (models.User, error)
 }
 
-type Articles interface {
+type Article interface {
 	CreateArticle(article models.Article) (int, error)
 	GetAllArticles() ([]models.Article, error)
+	GetArticleByID(id int) (models.Article, error)
 	DeleteArticle(id int) error
 	MyArticles(id int) ([]models.Article, error)
+	GetAvailableArticles() ([]models.Article, error)
+}
+
+type Review interface {
+	CreateReview(review models.Review) (int, error)
+	GetReviewByID(id int) (models.Review, error)
+	MyReviews(id int) ([]models.Review, error)
 }
 
 type Service struct {
 	Auth
-	Users
-	Articles
+	User
+	Article
+	Review
 }
 
 func NewService(repo *repositories.Repository) *Service {
 	return &Service{
-		Auth:     NewAuthService(repo.Auth),
-		Users:    NewUsersService(repo.Users),
-		Articles: NewArticlesService(repo),
+		Auth:    NewAuthService(repo.Auth),
+		User:    NewUserService(repo.User),
+		Article: NewArticleService(repo.Article),
+		Review:  NewReviewService(repo.Review),
 	}
 }
 
-func generatePasswordHash(password string) string {
+func generatePasswordHash(password string) (string, error) {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
-		// In a real application, you'd want to handle this error more gracefully
-		// For now, we'll panic, but logging and returning an error would be better.
-		panic(err)
+		return "", fmt.Errorf("error hash password: %s", err.Error())
 	}
-	return string(hashedPassword)
+	return string(hashedPassword), nil
 }
 
 func ComparePasswordAndHash(password, hash string) bool {

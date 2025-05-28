@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './UserManagement.css'; 
 import CreateUserModal from '../CreateUserModal/CreateUserModal'; 
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 const API_BASE_URL = 'http://localhost:8080'; 
 
@@ -109,9 +110,10 @@ function UserManagement() {
     <div className="page-container">
       <header className="page-header">
         <h1 className="page-title">Управление пользователями</h1>
-        <nav className="breadcrumbs">
-          <Link to="/admin/dashboard">Панель администратора</Link> &gt; Управление пользователями
-        </nav>
+        <Breadcrumbs items={[
+          { label: 'Панель администратора', to: '/admin/dashboard' },
+          { label: 'Управление пользователями' }
+        ]} />
       </header>
 
       <div className="actions-bar">

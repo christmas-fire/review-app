@@ -1,10 +1,10 @@
-.authorDashboardContainer {
+.reviewerDashboardContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px;
-  background-color: #eef1f5;
-  min-height: calc(100vh - 60px);
+  background-color: #eef1f5; /* Similar to AuthorDashboard */
+  min-height: calc(100vh - 60px); /* Assuming a 60px navbar or similar */
   font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   width: 100%;
   box-sizing: border-box;
@@ -17,8 +17,8 @@
   text-align: center;
 }
 
-.authorDashboardTitle {
-  color: #2c3e50;
+.reviewerDashboardTitle {
+  color: #2c3e50; /* Dark blue-gray */
   margin-bottom: 10px;
   font-size: 2.8em;
   font-weight: 600;
@@ -46,7 +46,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
   text-align: center;
-  flex-basis: 220px;
+  flex-basis: 220px; /* Min width before wrapping */
   flex-grow: 1;
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
@@ -59,7 +59,7 @@
 .statCard h3 {
   margin-top: 0;
   margin-bottom: 8px;
-  color: #3498db; /* Blue color for headings */
+  color: #007bff; /* Reviewer-specific blue for headings */
   font-size: 1.15em;
 }
 
@@ -70,7 +70,8 @@
   margin-bottom: 0;
 }
 
-.authorDashboardNav {
+/* Navigation styles to mimic AuthorDashboard */
+.reviewerDashboardNav {
   width: 100%;
   max-width: 900px;
   background-color: transparent;
@@ -79,27 +80,28 @@
   box-shadow: none;
 }
 
-.authorDashboardUl {
+.reviewerDashboardUl {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 30px; /* Spacing between cards */
 }
 
-.authorDashboardLi {
-  flex-basis: 260px;
+.reviewerDashboardLi {
+  flex-basis: 260px; /* Min width of a card */
   flex-grow: 1;
-  max-width: 300px;
+  max-width: 300px; /* Max width of a card */
 }
 
-.authorDashboardLink {
+.reviewerDashboardLink {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* Reviewer-specific gradient - let's use shades of blue/purple */
   background: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
   color: white;
   padding: 25px 15px;
@@ -110,15 +112,22 @@
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  min-height: 130px;
+  min-height: 130px; /* Ensure cards have a good height */
 }
 
-.authorDashboardLink:hover {
+.reviewerDashboardLink:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(22, 172, 93, 0.25); /* Adjusted shadow color */
+  /* Adjusted shadow color for reviewer theme */
+  box-shadow: 0 6px 20px rgba(95, 114, 189, 0.3); 
 }
 
 .linkIcon {
-  font-size: 2.2em;
+  font-size: 2.2em; /* Size of the icon */
   margin-bottom: 12px;
+}
+
+.myReviewsSection {
+    width: 100%;
+    max-width: 900px;
+    margin-top: 30px;
 } 
