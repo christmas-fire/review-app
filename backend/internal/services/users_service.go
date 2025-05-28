@@ -39,3 +39,7 @@ func (s *UsersService) DeleteUser(id int) error {
 func (s *UsersService) BlockUser(id int) error {
 	return s.repo.BlockUser(id)
 }
+
+func (s *UsersService) MyProfile(id int) (models.User, error) {
+	return s.repo.MyProfile(id)
+}

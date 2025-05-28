@@ -101,3 +101,25 @@ func (h *UsersController) BlockUser(c *gin.Context) {
 
 	c.Status(http.StatusNoContent)
 }
+
+func (h *UsersController) MyProfile(c *gin.Context) {
+	idStr, ok := middleware.GetUserIDFromContext(c)
+	if !ok {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id format"})
+		return
+	}
+
+	user, err := h.service.Users.MyProfile(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"user": user})
+}

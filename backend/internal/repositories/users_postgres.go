@@ -69,3 +69,11 @@ func (r *UsersPostgres) BlockUser(id int) error {
 
 	return nil
 }
+
+func (r *UsersPostgres) MyProfile(id int) (models.User, error) {
+	var user models.User
+
+	query := "SELECT id, username, email, password, role, is_blocked FROM users WHERE id=$1"
+	err := r.db.Get(&user, query, id)
+	return user, err
+}

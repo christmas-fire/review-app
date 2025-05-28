@@ -6,6 +6,10 @@ import AuthScreen from './components/AuthScreen/AuthScreen';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import ArticleManagement from './components/ArticleManagement/ArticleManagement';
 import UserManagement from './components/UserManagement/UserManagement';
+import AuthorDashboard from './components/AuthorDashboard/AuthorDashboard';
+import CreateArticle from './components/CreateArticle/CreateArticle';
+import MyArticles from './components/MyArticles/MyArticles';
+import MyProfile from './components/MyProfile/MyProfile';
 
 function AppContent() {
   const [authMode, setAuthMode] = useState('login');
@@ -52,6 +56,8 @@ function AppContent() {
               <SplashScreen onNavigate={handleNavigateToAuth} />
             ) : user?.role === 'admin' ? (
               <Navigate to="/admin/dashboard" replace />
+            ) : user?.role === 'author' ? (
+              <Navigate to="/author/dashboard" replace />
             ) : (
               <div className="App-header-authenticated">
                 <h1>Welcome, {user?.username || 'User'}!</h1>
@@ -67,7 +73,7 @@ function AppContent() {
             !isAuthenticated ? (
               <AuthScreen initialMode={authMode} onAuthSuccess={handleAuthSuccess} />
             ) : (
-              user?.role === 'admin' ? <Navigate to="/admin/dashboard" replace /> : <Navigate to="/" replace />
+              user?.role === 'admin' ? <Navigate to="/admin/dashboard" replace /> : user?.role === 'author' ? <Navigate to="/author/dashboard" replace /> : <Navigate to="/" replace />
             )
           } 
         />
@@ -101,13 +107,49 @@ function AppContent() {
             )
           } 
         />
+        <Route 
+          path="/author/dashboard" 
+          element={
+            isAuthenticated && user?.role === 'author' ? (
+              <AuthorDashboard />
+            ) : (
+              <Navigate to="/auth" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/author/articles/create" 
+          element={
+            isAuthenticated && user?.role === 'author' ? (
+              <CreateArticle />
+            ) : (
+              <Navigate to="/auth" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/author/articles/my" 
+          element={
+            isAuthenticated && user?.role === 'author' ? (
+              <MyArticles />
+            ) : (
+              <Navigate to="/auth" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/author/profile" 
+          element={
+            isAuthenticated && user?.role === 'author' ? (
+              <MyProfile />
+            ) : (
+              <Navigate to="/auth" replace />
+            )
+          } 
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      {isAuthenticated && user?.role !== 'admin' && (
-         <div style={{ textAlign: 'center', padding: '10px' }}> 
-         </div>
-      )}
-       {isAuthenticated && user?.role === 'admin' && (
+      {isAuthenticated && (user?.role === 'author' || user?.role === 'admin') && (
           <div style={{ textAlign: 'center', padding: '10px' }}>
             <button onClick={handleLogout} className="logout-button" style={{ position: 'fixed', bottom: '20px', right: '20px' }}>Выйти</button>
           </div>

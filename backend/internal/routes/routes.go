@@ -33,6 +33,7 @@ func InitRouter(h *controllers.Controller) *gin.Engine {
 			users.GET("/", middleware.RoleMiddleware("admin"), h.Users.GetAllUsers)
 			users.DELETE("/:id", middleware.RoleMiddleware("admin"), h.Users.DeleteUser)
 			users.PATCH("/:id/block", middleware.RoleMiddleware("admin"), h.Users.BlockUser)
+			users.GET("/my", middleware.RoleMiddleware("author"), h.MyProfile)
 		}
 
 		articles := apiV1.Group("/articles")
@@ -41,6 +42,7 @@ func InitRouter(h *controllers.Controller) *gin.Engine {
 			articles.POST("/", middleware.RoleMiddleware("author"), h.Articles.CreateArticle)
 			articles.GET("/", middleware.RoleMiddleware("admin"), h.Articles.GetAllArticles)
 			articles.DELETE("/:id", middleware.RoleMiddleware("admin"), h.Articles.DeleteArticle)
+			articles.GET("/my", middleware.RoleMiddleware("author"), h.MyArticles)
 
 		}
 

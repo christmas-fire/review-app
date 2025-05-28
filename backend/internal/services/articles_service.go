@@ -24,3 +24,7 @@ func (s *ArticlesService) GetAllArticles() ([]models.Article, error) {
 func (s *ArticlesService) DeleteArticle(id int) error {
 	return s.repo.DeleteArticle(id)
 }
+
+func (s *ArticlesService) MyArticles(id int) ([]models.Article, error) {
+	return s.repo.MyArticles(id)
+}
