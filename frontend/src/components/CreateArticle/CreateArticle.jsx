@@ -44,6 +44,7 @@ function CreateArticle() {
       setTitle('');
       setContent('');
       setCategory('');
+      setTimeout(() => navigate('/author/dashboard'), 1500);
     } catch (err) {
       setError(err.message);
     }
