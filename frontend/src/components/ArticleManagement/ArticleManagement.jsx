@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './ArticleManagement.css'; // We'll create this CSS file next
+import './ArticleManagement.css'; 
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
-const API_BASE_URL = 'http://localhost:8080'; // Consistent API base URL
+const API_BASE_URL = 'http://localhost:8080'; 
 
 function ArticleManagement() {
   const [articles, setArticles] = useState([]);
@@ -89,13 +89,10 @@ function ArticleManagement() {
           { label: 'Панель администратора', to: '/admin/dashboard' },
           { label: 'Управление статьями' }
         ]} />
-        <nav className="breadcrumbs" style={{ display: 'none' }}></nav> {/* старые крошки скрыты */}
+        <nav className="breadcrumbs" style={{ display: 'none' }}></nav>
       </header>
 
       <div className="actions-bar">
-        {/* Placeholder for future actions like search or filters if uncommented */}
-        {/* <button className="action-button">Создать новую статью</button> */}
-        {/* <input type="text" placeholder="Поиск статей..." className="search-input" /> */}
         <p>Список всех статей в системе.</p> 
       </div>
 

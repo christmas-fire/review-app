@@ -1,13 +1,12 @@
 .breadcrumbs {
-  font-size: 1.08em;
-  color: #888;
-  margin: 0 0 18px 0;
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 20px;
   padding: 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   text-align: center;
-  justify-content: center;
 }
 
 .breadcrumbItem {
@@ -33,4 +32,9 @@
   margin: 0 6px;
   color: #aaa;
   user-select: none;
+}
+
+.breadcrumbsCenter {
+  text-align: center;
+  justify-content: center;
 } 

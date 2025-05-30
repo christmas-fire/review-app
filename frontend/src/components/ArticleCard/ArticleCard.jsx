@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './ArticleCard.module.css';
-import { Link } from 'react-router-dom'; // For navigation if action is a link
+import { Link } from 'react-router-dom';
 
-// Helper to format date (can be moved to a utils file if used elsewhere)
 const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     try {
@@ -12,26 +11,25 @@ const formatDate = (dateString) => {
             day: 'numeric',
         });
     } catch (e) {
-        return dateString; // Fallback
+        return dateString; 
     }
 };
 
 function ArticleCard({
     article,
     actionButtonText,
-    onActionButtonClick, // Expects a function, e.g., () => handleAction(article.id)
-    actionButtonLinkTo,  // Optional: if the button is a direct link
-    showAuthor = true,   // Default to true, can be set to false
-    statusText = '',      // Optional: e.g., "Reviewed", "Pending"
-    statusClassName = '' // Optional: e.g. styles.statusReviewed
+    onActionButtonClick, 
+    actionButtonLinkTo,  
+    showAuthor = true,   
+    statusText = '',      
+    statusClassName = '' 
 }) {
     if (!article) {
-        return null; // Or some placeholder/error
+        return null; 
     }
 
-    // Prefer snippet if available, otherwise take a slice of content
     const displayContent = article.snippet || 
-                         (article.content ? `${article.content.substring(0, 150)}...` : 'Нет содержимого для отображения.');
+                         (article.content ? `${article.content.substring(0, 150)}` : 'Нет содержимого для отображения.');
 
     return (
         <div className={styles.articleCardItem}>
@@ -53,15 +51,13 @@ function ArticleCard({
             
             <div className={styles.metaInfoContainerBottom}>
                 {statusText && (
-                    <p className={`${styles.statusText} ${statusClassName || ''}`.trim()}>Статус: {statusText}</p>
+                    <p className={styles.statusText}>
+                        <span style={{ color: '#6c757d', fontWeight: 500 }}>Статус:</span> <span className={statusClassName}>{statusText}</span>
+                    </p>
                 )}
                 {article.created_at && (
                     <span className={styles.dateText}>Создана: {formatDate(article.created_at)}</span>
                 )}
-                {/* Display updated_at if significantly different or relevant */}
-                {/* {article.updated_at && formatDate(article.created_at) !== formatDate(article.updated_at) && (
-                    <span className={styles.dateText}>Обновлена: {formatDate(article.updated_at)}</span>
-                )} */}
             </div>
 
             {(actionButtonText && (onActionButtonClick || actionButtonLinkTo)) && (

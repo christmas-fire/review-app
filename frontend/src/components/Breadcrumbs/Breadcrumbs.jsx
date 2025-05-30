@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Breadcrumbs({ items }) {
   if (!items || items.length === 0) return null;
   return (
-    <nav className={styles.breadcrumbs} aria-label="breadcrumb">
+    <nav className={styles.breadcrumbs + ' ' + styles.breadcrumbsCenter} aria-label="breadcrumb">
       {items.map((item, idx) => (
         <span key={idx} className={styles.breadcrumbItem}>
           {item.to && idx !== items.length - 1 ? (

@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   padding: 30px;
-  background-color: #eef1f5; /* Similar to AuthorDashboard */
-  min-height: calc(100vh - 60px); /* Assuming a 60px navbar or similar */
+  background-color: #eef1f5; 
+  min-height: calc(100vh - 60px); 
   font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   width: 100%;
   box-sizing: border-box;
@@ -18,7 +18,7 @@
 }
 
 .reviewerDashboardTitle {
-  color: #2c3e50; /* Dark blue-gray */
+  color: #2c3e50; 
   margin-bottom: 10px;
   font-size: 2.8em;
   font-weight: 600;
@@ -59,7 +59,7 @@
 .statCard h3 {
   margin-top: 0;
   margin-bottom: 8px;
-  color: #007bff; /* Reviewer-specific blue for headings */
+  color: #007bff; 
   font-size: 1.15em;
 }
 
@@ -70,7 +70,6 @@
   margin-bottom: 0;
 }
 
-/* Navigation styles to mimic AuthorDashboard */
 .reviewerDashboardNav {
   width: 100%;
   max-width: 900px;
@@ -87,13 +86,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px; /* Spacing between cards */
+  gap: 30px; 
 }
 
 .reviewerDashboardLi {
-  flex-basis: 260px; /* Min width of a card */
+  flex-basis: 260px; 
   flex-grow: 1;
-  max-width: 300px; /* Max width of a card */
+  max-width: 300px; 
 }
 
 .reviewerDashboardLink {
@@ -101,7 +100,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Reviewer-specific gradient - let's use shades of blue/purple */
   background: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
   color: white;
   padding: 25px 15px;
@@ -112,17 +110,16 @@
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  min-height: 130px; /* Ensure cards have a good height */
+  min-height: 130px; 
 }
 
 .reviewerDashboardLink:hover {
   transform: translateY(-4px);
-  /* Adjusted shadow color for reviewer theme */
   box-shadow: 0 6px 20px rgba(95, 114, 189, 0.3); 
 }
 
 .linkIcon {
-  font-size: 2.2em; /* Size of the icon */
+  font-size: 2.2em; 
   margin-bottom: 12px;
 }
 

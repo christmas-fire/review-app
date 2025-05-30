@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import styles from './AvailableReviews.module.css';
 import ArticleCard from '../ArticleCard/ArticleCard';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+import articleCardStyles from '../ArticleCard/ArticleCard.module.css';
 
 const API_BASE_URL = 'http://localhost:8080';
 
@@ -93,7 +94,7 @@ function AvailableReviews() {
               actionButtonLinkTo={`/reviewer/create-review/${article.id}`}
               showAuthor={true}
               statusText="Ожидает вашего ревью"
-              statusClassName={styles.statusPendingArticle}
+              statusClassName={articleCardStyles.statusPending}
             />
           ))}
         </div>

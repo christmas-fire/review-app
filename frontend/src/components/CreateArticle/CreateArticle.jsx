@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CreateArticle.module.css';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
@@ -13,6 +13,28 @@ function CreateArticle() {
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
+  const [profile, setProfile] = useState(null);
+  const [profileLoading, setProfileLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      setProfileLoading(true);
+      try {
+        const token = user?.token;
+        if (!token) return;
+        const res = await fetch('http://localhost:8080/api/v1/users/my', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        setProfile(data.user);
+      } catch (e) {
+        setProfile(null);
+      } finally {
+        setProfileLoading(false);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +43,11 @@ function CreateArticle() {
 
     if (!user || !user.token) {
       setError('Вы не авторизованы для создания статьи.');
+      return;
+    }
+
+    if (profile?.is_blocked) {
+      setError('Ваш аккаунт заблокирован. Вы не можете отправлять статьи.');
       return;
     }
 
@@ -44,8 +71,7 @@ function CreateArticle() {
       setTitle('');
       setContent('');
       setCategory('');
-      // Optionally navigate to my articles page or dashboard
-      // navigate('/author/articles/my'); 
+      setTimeout(() => navigate('/author/dashboard'), 1500);
     } catch (err) {
       setError(err.message);
     }
@@ -93,7 +119,12 @@ function CreateArticle() {
             className={styles.textarea}
           />
         </div>
-        <button type="submit" className={styles.submitButton}>Создать статью</button>
+        {profile?.is_blocked && (
+          <div className={styles.errorMessage} style={{marginBottom: 10}}>
+            Ваш аккаунт заблокирован. Вы не можете создавать статьи.
+          </div>
+        )}
+        <button type="submit" className={styles.submitButton} disabled={profile?.is_blocked || profileLoading}>Создать статью</button>
       </form>
       <button onClick={() => navigate(-1)} className={styles.backButton}>Назад</button>
     </div>

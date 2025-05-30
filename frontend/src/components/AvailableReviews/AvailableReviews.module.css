@@ -1,17 +1,16 @@
-/* AvailableReviews.module.css */
 .availableReviewsContainer {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f0f2f5; /* Page background to light grey */
+    background-color: #f0f2f5; 
     border-radius: 8px;
-    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Added font */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; 
 }
 
 .title {
-    color: #2c3e50; /* Darker, modern title color */
+    color: #2c3e50; 
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 8px;
     font-size: 2.2em;
     font-weight: 600;
 }
@@ -26,7 +25,7 @@
 }
 
 .errorMessage {
-    color: #d9534f; /* Bootstrap danger color */
+    color: #d9534f; 
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     border-radius: 6px;
@@ -35,13 +34,13 @@
 .reviewList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Or space-around, depending on desired alignment */
-    gap: 20px; /* Spacing between cards */
-    padding: 0; /* Remove default padding if any */
-    list-style: none; /* Remove default list styles if it was a ul/ol */
+    justify-content: center; 
+    gap: 20px; 
+    padding: 0; 
+    list-style: none; 
 }
 
-.backButtonContainer { /* Container for the back button */
+.backButtonContainer { 
     text-align: center;
     margin-top: 30px;
 }
@@ -62,22 +61,19 @@
     background-color: #5a6268;
 }
 
-/* Responsive adjustments for page-level elements if any */
 @media (max-width: 600px) {
     .availableReviewsContainer {
         margin: 10px;
         padding: 15px;
     }
-    /* Adjust .title, .backButton etc. for mobile if needed */
 }
 
-/* 
-  Removed CSS rules that are now handled by ArticleCard.module.css:
-  - .reviewItem, .reviewItem:hover
-  - .articleTitle
-  - .articleMetaTop, .articleMetaBottom
-  - .articleCategory, .articleAuthor, .articleDate
-  - .articleContentSnippet
-  - .createReviewLink, .createReviewLink:hover 
-  - .buttonContainer (if it was solely for createReviewLink)
-*/ 
+.breadcrumbs {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+} 

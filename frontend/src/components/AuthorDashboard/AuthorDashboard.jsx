@@ -24,7 +24,6 @@ function AuthorDashboard() {
       }
 
       try {
-        // Fetch author's articles
         const articlesResponse = await fetch(`${API_BASE_URL}/api/v1/articles/my`, {
           headers: { 'Authorization': `Bearer ${token}` },
         });
@@ -33,7 +32,6 @@ function AuthorDashboard() {
         const articlesArray = Array.isArray(articlesData) ? articlesData : (articlesData.articles || []);
         setMyArticleCount(articlesArray.length);
 
-        // Count reviewed articles
         const reviewedCount = articlesArray.filter(article => article.is_reviewed === true).length;
         setReviewedArticleCount(reviewedCount);
 
@@ -53,7 +51,6 @@ function AuthorDashboard() {
   }, [user?.token]);
 
   if (!user || user.role !== 'author') {
-    // Optionally, redirect or show an access denied message
     return <p>У вас нет доступа к этой странице.</p>;
   }
 

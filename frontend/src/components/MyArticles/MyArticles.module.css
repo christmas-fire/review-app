@@ -11,7 +11,7 @@
 
 .title {
   color: #2c3e50;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
   font-size: 2.2em;
   font-weight: 600;
   text-align: center;
@@ -38,13 +38,12 @@
 }
 
 .articleList {
-  /* width: 100%; */ /* Replaced by flex properties */
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Or space-around, depending on desired alignment */
-  gap: 20px; /* Spacing between cards */
-  padding: 0; /* Remove default padding if any */
-  list-style: none; /* Remove default list styles if it was a ul/ol */
+  justify-content: center; 
+  gap: 20px; 
+  padding: 0; 
+  list-style: none; 
 }
 
 .backButtonContainer {
@@ -76,4 +75,14 @@
 
 .noArticlesMessage a:hover {
     text-decoration: underline;
+}
+
+.breadcrumbs {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 } 
