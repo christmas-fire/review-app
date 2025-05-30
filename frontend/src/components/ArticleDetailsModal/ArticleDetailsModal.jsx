@@ -4,7 +4,7 @@ import cardStyles from '../ArticleCard/ArticleCard.module.css';
 
 function ArticleDetailsModal({ article, onClose, isLoading, error }) {
   if (!article && !isLoading && !error) {
-    return null; // Or some placeholder if an article is expected but not yet loaded/failed
+    return null;
   }
 
   return (

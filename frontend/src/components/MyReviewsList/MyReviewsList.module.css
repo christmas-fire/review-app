@@ -1,4 +1,3 @@
-/* MyReviewsList.module.css */
 .myReviewsContainer {
     margin-top: 30px;
     padding: 20px;
@@ -99,16 +98,12 @@
     font-weight: 500;
 }
 
-.date {
-    /* Style for date if needed */
-}
-
 .viewArticleButton {
     display: block;
-    width: calc(100% - 30px); /* Full width minus padding of parent */
+    width: calc(100% - 30px); 
     margin: 15px auto 0;
     padding: 10px 15px;
-    background-color: #007bff; /* Primary blue */
+    background-color: #007bff; 
     color: white;
     border: none;
     border-radius: 4px;
@@ -120,5 +115,5 @@
 }
 
 .viewArticleButton:hover {
-    background-color: #0056b3; /* Darker blue */
+    background-color: #0056b3; 
 } 

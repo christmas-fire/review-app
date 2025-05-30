@@ -8,25 +8,20 @@ import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 const API_BASE_URL = 'http://localhost:8080';
 
-// Helper function to determine status text for an article
 const determineStatusText = (article) => {
   if (article.is_reviewed) {
-    // Assuming article.review_status might exist if review is present
-    // and can be 'accepted', 'rejected', etc.
-    // If not, we derive from is_reviewed only.
     if (article.review_status === 'accepted') return 'Ревью принято';
     if (article.review_status === 'rejected') return 'Ревью отклонено';
-    return 'Статья рассмотрена'; // Generic if review status is not more specific
+    return 'Статья рассмотрена'; 
   }
   return 'На рассмотрении';
 };
 
-// Helper function to get style class for article status
 const getStatusStyle = (article) => {
   if (article.is_reviewed) {
     if (article.review_status === 'accepted') return articleCardStyles.statusReviewed;
     if (article.review_status === 'rejected') return articleCardStyles.statusRejected;
-    return articleCardStyles.statusReviewed; // Default to green if reviewed but status unknown
+    return articleCardStyles.statusReviewed; 
   }
   return articleCardStyles.statusPending;
 };
@@ -37,7 +32,6 @@ function MyArticles() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // State for Review Modal
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [selectedReview, setSelectedReview] = useState(null);
   const [isLoadingReview, setIsLoadingReview] = useState(false);
@@ -77,7 +71,6 @@ function MyArticles() {
       }
     };
     fetchArticles();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleViewReview = async (reviewId) => {

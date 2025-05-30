@@ -59,7 +59,7 @@
 .statCard h3 {
   margin-top: 0;
   margin-bottom: 8px;
-  color: #3498db; /* Blue color for headings */
+  color: #3498db; 
   font-size: 1.15em;
 }
 
@@ -115,7 +115,7 @@
 
 .authorDashboardLink:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(22, 172, 93, 0.25); /* Adjusted shadow color */
+  box-shadow: 0 6px 20px rgba(22, 172, 93, 0.25); 
 }
 
 .linkIcon {

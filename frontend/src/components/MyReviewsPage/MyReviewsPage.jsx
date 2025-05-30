@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyReviewsList from '../MyReviewsList/MyReviewsList'; // Assuming this is in the same components folder or adjust path
+import MyReviewsList from '../MyReviewsList/MyReviewsList'; 
 import styles from './MyReviewsPage.module.css';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 

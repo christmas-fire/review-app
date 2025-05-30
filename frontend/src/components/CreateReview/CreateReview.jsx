@@ -9,8 +9,8 @@ function CreateReview() {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
   const [comment, setComment] = useState('');
-  const [rating, setRating] = useState(5); // Default rating
-  const [isApproved, setIsApproved] = useState(true); // Default to approved
+  const [rating, setRating] = useState(5); 
+  const [isApproved, setIsApproved] = useState(true); 
 
   const [error, setError] = useState(null);
   const [submitError, setSubmitError] = useState(null);
@@ -54,7 +54,6 @@ function CreateReview() {
 
         const data = await response.json();
         if (data) {
-          // If data.article exists, use it. Otherwise, assume data itself is the article.
           setArticle(data.article || data); 
         } else {
           throw new Error('Ответ от сервера не содержит данных статьи.');
@@ -128,11 +127,11 @@ function CreateReview() {
     return <p className={styles.loadingMessage}>Загрузка данных статьи...</p>;
   }
 
-  if (error) { // Error loading article
+  if (error) { 
     return <p className={styles.errorMessage}>{error}</p>;
   }
   
-  if (!article) { // Article not found or error during fetch
+  if (!article) { 
     return <p className={styles.errorMessage}>Не удалось найти статью для ревью.</p>;
   }
 
@@ -146,8 +145,8 @@ function CreateReview() {
       ]} />
       <div className={styles.articlePreview}>
           <h2 className={styles.articlePreviewTitle}>{article.title}</h2>
-          <p className={styles.articleCategory}><strong>Категория:</strong> {article.category}</p>
-          <p className={styles.articleContent}><strong>Содержание:</strong></p>
+          <p className={styles.articleCategory}><span className={styles.label}>Категория:</span> {article.category}</p>
+          <p className={styles.articleContent}><span className={styles.label}>Содержание:</span></p>
           <div className={styles.contentBox}>{article.content}</div>
       </div>
 
@@ -192,7 +191,7 @@ function CreateReview() {
         </div>
         <button type="submit" className={styles.submitButton}>Отправить ревью</button>
       </form>
-      <button onClick={() => navigate('/reviewer/available-reviews')} className={styles.backButton}>Назад к списку</button>
+      <button onClick={() => navigate('/reviewer/available-reviews')} className={styles.backButton}>Назад</button>
     </div>
   );
 }

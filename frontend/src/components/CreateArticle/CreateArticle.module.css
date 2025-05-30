@@ -13,7 +13,7 @@
 
 .title {
   color: #333;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
   font-size: 2em;
   font-weight: 600;
 }
@@ -63,7 +63,7 @@
 
 .submitButton {
   padding: 12px 20px;
-  background: linear-gradient(135deg, #11cb6a 0%, #25fc75 100%);
+  background: #007bff;
   color: white;
   border: none;
   border-radius: 6px;
@@ -119,4 +119,14 @@
 
 .backButton:hover {
   background-color: #5a6268;
+}
+
+.breadcrumbs {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 } 

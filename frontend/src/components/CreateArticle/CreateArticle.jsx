@@ -44,8 +44,6 @@ function CreateArticle() {
       setTitle('');
       setContent('');
       setCategory('');
-      // Optionally navigate to my articles page or dashboard
-      // navigate('/author/articles/my'); 
     } catch (err) {
       setError(err.message);
     }
