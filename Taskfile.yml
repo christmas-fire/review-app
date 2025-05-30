@@ -1,38 +1,46 @@
 version: '3'
 
 vars:
-  GREETING: Hello, World!
-  BACKEND_EXE: review-app.exe
-  BACKEND_DIR: backend
-  FRONTEND_DIR: frontend
+  COMPOSE_FILE: docker-compose.yml
 
 tasks:
   default:
+    desc: "Показывает доступные задачи"
     cmds:
-      - echo "{{.GREETING}}"
-    silent: true
+      - task --list-all
 
-  build-backend:
-    dir: "{{.BACKEND_DIR}}"
+  up:
+    desc: "Собрать образы (при необходимости) и запустить все сервисы в фоновом режиме."
     cmds:
-      - go build -o ../{{.BACKEND_EXE}} ./cmd/main.go
+      - docker-compose -f {{.COMPOSE_FILE}} up -d --build
 
-  run-backend:
-    deps: 
-      - build-backend
+  start:
+    desc: "Запустить существующие контейнеры (без пересборки)."
     cmds:
-      - ./{{.BACKEND_EXE}}
+      - docker-compose -f {{.COMPOSE_FILE}} up -d
 
-  run-frontend:
-    dir: "{{.FRONTEND_DIR}}"
+  stop:
+    desc: "Остановить запущенные сервисы."
     cmds:
-      - npm start
+      - docker-compose -f {{.COMPOSE_FILE}} stop
 
-  run:
-    deps:
-      - run-backend
-      - run-frontend
+  down:
+    desc: "Остановить и удалить контейнеры, сети."
+    cmds:
+      - docker-compose -f {{.COMPOSE_FILE}} down
 
   clean:
+    desc: "Остановить, удалить контейнеры, сети И УДАЛИТЬ ТОМА ДАННЫХ (например, БД)."
+    prompt: "ВНИМАНИЕ: Эта команда удалит все данные из PostgreSQL. Вы уверены? (y/N)"
     cmds:
-      - del {{.BACKEND_EXE}}
+      - docker-compose -f {{.COMPOSE_FILE}} down -v
+
+  logs:
+    desc: "Показать логи всех сервисов. `task logs -- [service_name]` для конкретного сервиса."
+    cmds:
+      - docker-compose -f {{.COMPOSE_FILE}} logs -f {{.CLI_ARGS}}
+
+  ps:
+    desc: "Показать статус контейнеров."
+    cmds:
+      - docker-compose -f {{.COMPOSE_FILE}} ps

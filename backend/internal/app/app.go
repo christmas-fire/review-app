@@ -2,7 +2,6 @@ package app
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/christmas-fire/review-app/backend/internal/config"
@@ -10,14 +9,11 @@ import (
 )
 
 func InitConfig() *config.Config {
-	if err := godotenv.Load(); err != nil {
-		log.Println("No .env file found, using system environment")
-	}
+	godotenv.Load()
 
 	return &config.Config{
 		Port:   getEnv("PORT", "8080"),
 		JwtKey: getEnv("JWT_KEY", "jwt_key"),
-		DBURL:  getEnv("DATABASE_URL", ""),
 		DBConn: getEnv("DATABASE_CONN", ""),
 	}
 }
