@@ -24,7 +24,7 @@ func main() {
 	controller := controllers.NewController(service)
 
 	r := routes.InitRouter(controller)
-	if err := r.Run(cfg.Port); err != nil {
+	if err := r.Run(":" + cfg.Port); err != nil {
 		logrus.Fatal(err)
 	}
 }
