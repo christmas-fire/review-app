@@ -29,7 +29,7 @@ function ArticleCard({
     }
 
     const displayContent = article.snippet || 
-                         (article.content ? `${article.content.substring(0, 150)}...` : 'Нет содержимого для отображения.');
+                         (article.content ? `${article.content.substring(0, 150)}` : 'Нет содержимого для отображения.');
 
     return (
         <div className={styles.articleCardItem}>

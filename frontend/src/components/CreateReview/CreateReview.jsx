@@ -17,6 +17,9 @@ function CreateReview() {
   const [success, setSuccess] = useState(null);
   const [isLoadingArticle, setIsLoadingArticle] = useState(true);
 
+  const [profile, setProfile] = useState(null);
+  const [profileLoading, setProfileLoading] = useState(true);
+
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -68,6 +71,26 @@ function CreateReview() {
     fetchArticleDetails();
   }, [articleId, user?.token]);
 
+  useEffect(() => {
+    const fetchProfile = async () => {
+      setProfileLoading(true);
+      try {
+        const token = user?.token;
+        if (!token) return;
+        const res = await fetch('http://localhost:8080/api/v1/users/my', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        setProfile(data.user);
+      } catch (e) {
+        setProfile(null);
+      } finally {
+        setProfileLoading(false);
+      }
+    };
+    fetchProfile();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitError(null);
@@ -84,6 +107,11 @@ function CreateReview() {
     if (!articleId) {
         setSubmitError('ID статьи не указан.');
         return;
+    }
+
+    if (profile?.is_blocked) {
+      setSubmitError('Ваш аккаунт заблокирован. Вы не можете отправлять ревью.');
+      return;
     }
 
     try {
@@ -189,7 +217,12 @@ function CreateReview() {
             <option value="no">Нет</option>
           </select>
         </div>
-        <button type="submit" className={styles.submitButton}>Отправить ревью</button>
+        {profile?.is_blocked && (
+          <div className={styles.errorMessage} style={{marginBottom: 10}}>
+            Ваш аккаунт заблокирован. Вы не можете отправлять ревью.
+          </div>
+        )}
+        <button type="submit" className={styles.submitButton} disabled={profile?.is_blocked || profileLoading}>Отправить ревью</button>
       </form>
       <button onClick={() => navigate('/reviewer/available-reviews')} className={styles.backButton}>Назад</button>
     </div>
